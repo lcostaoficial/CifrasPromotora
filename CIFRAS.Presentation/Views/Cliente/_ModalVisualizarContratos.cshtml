@@ -1,0 +1,62 @@
+﻿@model CIFRAS.Application.ViewModel.ClienteVm
+
+<div class="modal fade" id="modalContratos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contratos</h5>
+            </div>
+            <div class="modal-body">
+                @if (Model.ListaContrato != null && Model.ListaContrato.Any())
+                {
+                    <table class="col-sm-12 table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Contrato</th>
+                                <th>Número de Contrato</th>
+                                <th>Data Inicial</th>
+                                <th>Data Final</th>
+                                <th>Valor Financiado</th>                              
+                                <th>Valor Parcela</th>
+                                <th>Parcelas Pagas</th>
+                                <th>Banco</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListaContrato)
+                            {
+                                <tr>
+                                    <td>@item.TipoContratoView</td>
+                                    <td>@item.NumeroContrato</td>
+                                    <td>
+                                        @if (item.DataInicio != null)
+                                        {
+                                            @item.DataInicio.Value.ToShortDateString()
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.DataFinal != null)
+                                        {
+                                            @item.DataFinal.Value.ToShortDateString()
+                                        }
+                                    </td>
+                                    <td>@item.ValorFinanciado</td>                                   
+                                    <td>@item.ValorParcela</td>
+                                    <td>@($"{item.ParcelaVigente}/{item.TotalParcelas}")</td>
+                                    <td>@item.BancoView</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>Nenhum contrato para este cliente!</p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

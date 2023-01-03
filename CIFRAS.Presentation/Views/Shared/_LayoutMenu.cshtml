@@ -1,0 +1,79 @@
+﻿@using CIFRAS.Application.ViewModel
+@model FuncionarioVm
+
+<ul class="navbar-nav navbar-sidenav">
+
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Página Inicial">
+        <a class="nav-link" href="@Url.Action("Index", "Home")">
+            <i class="fa fa-fw fa-home"></i>
+            <span class="nav-link-text">Página Inicial</span>
+        </a>
+    </li>
+
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Clientes">
+        <a class="nav-link" href="@Url.Action("Index", "Cliente")">
+            <i class="fa fa-fw fa-user-circle"></i>
+            <span class="nav-link-text">Clientes</span>
+        </a>
+    </li>
+
+    @if (Model.Cargo == Cargo.Administrador)
+    {
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Recibos">
+            <a class="nav-link" href="@Url.Action("Index", "Recibo")">
+                <i class="fa fa-fw fa-download"></i>
+                <span class="nav-link-text">Recibos</span>
+            </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bancos">
+            <a class="nav-link" href="@Url.Action("Index", "Banco")">
+                <i class="fa fa-fw fa-bank"></i>
+                <span class="nav-link-text">Bancos</span>
+            </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Corretores">
+            <a class="nav-link" href="@Url.Action("Index", "Corretor")">
+                <i class="fa fa-fw fa-briefcase"></i>
+                <span class="nav-link-text">Corretores</span>
+            </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Funcionários">
+            <a class="nav-link" href="@Url.Action("Index", "Funcionario")">
+                <i class="fa fa-fw fa-user-plus"></i>
+                <span class="nav-link-text">Funcionários</span>
+            </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Importação">
+            <a class="nav-link" href="@Url.Action("Index", "Importacao")">
+                <i class="fa fa-fw fa-upload"></i>
+                <span class="nav-link-text">Importação</span>
+            </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tipos de Cliente">
+            <a class="nav-link" href="@Url.Action("Index", "TipoCliente")">
+                <i class="fa fa-fw fa-star"></i>
+                <span class="nav-link-text">Tipos de Cliente</span>
+            </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tipos de Contrato">
+            <a class="nav-link" href="@Url.Action("Index", "TipoContrato")">
+                <i class="fa fa-fw fa-star"></i>
+                <span class="nav-link-text">Tipos de Contrato</span>
+            </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Categoria de Arquivos">
+            <a class="nav-link" href="@Url.Action("Index", "CategoriaArquivo")">
+                <i class="fa fa-fw fa-star"></i>
+                <span class="nav-link-text">Categoria de Arquivos</span>
+            </a>
+        </li>
+    }
+
+</ul>

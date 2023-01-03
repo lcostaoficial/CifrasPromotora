@@ -1,0 +1,18 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@{
+    ViewBag.TableUrl = Url.Content("~/Funcionario/ObterTabela").ToAbsoluteUrl();
+    ViewBag.TranslatorUrl = Url.Content("~/Scripts/vendor/datatables/translator.json").ToAbsoluteUrl();
+    ViewBag.EditBtnUrl = Url.Action("Editar", "Funcionario");
+    ViewBag.RemoveBtnUrl = Url.Action("Remover", "Funcionario");
+}
+
+<table id="datatable" data-edit="@ViewBag.EditBtnUrl" data-remove="@ViewBag.RemoveBtnUrl" data-table="@ViewBag.TableUrl" data-translator="@ViewBag.TranslatorUrl" data-plugin="DataTable" class="table table-bordered table-striped table-hover" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Cargo</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+</table>

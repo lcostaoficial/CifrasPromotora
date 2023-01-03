@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CIFRAS.Application.ViewModel.ContratoVm>
+@if (Model != null && Model.Any())
+{
+    int i = 0;
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tipo Contrato</th>
+                <th>Número do Contrato</th>
+                <th>Data Inicial</th>              
+                <th>Valor Financiado</th>               
+                <th>Valor da Parcela</th>               
+                <th>Prazo</th>
+                <th>Banco</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TipoContratoView</td>
+                    <td>@item.NumeroContrato</td>
+                    <td>@(item.DataInicio?.ToShortDateString() ?? "")</td>                  
+                    <td>@item.ValorFinanciado</td>                   
+                    <td>@item.ValorParcela</td>                
+                    <td>@item.TotalParcelas</td>
+                    <td>@item.BancoView</td>
+                    <td><a href="#" onclick="RemoverContrato('@($"{ Url.Action("RemoverContrato", "Cliente")}?index= {i}")');">Cancelar</a></td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+}

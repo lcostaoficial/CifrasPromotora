@@ -1,0 +1,22 @@
+﻿@model int
+@using CIFRAS.Infra.CrossCutting.Helpers
+@{
+    ViewBag.TableUrl = Url.Content("~/Arquivo/ObterTabela").ToAbsoluteUrl();
+    ViewBag.TranslatorUrl = Url.Content("~/Scripts/vendor/datatables/translator.json").ToAbsoluteUrl();
+    ViewBag.DownloadBtnUrl = Url.Action("Download", "Arquivo");  
+    ViewBag.RemoveBtnUrl = Url.Action("Remover", "Arquivo");
+    ViewBag.BackBtnUrl = Url.Action("Visualizar", "Arquivo");    
+}
+
+<table id="datatable" data-download="@ViewBag.DownloadBtnUrl" data-edit="@ViewBag.EditBtnUrl" data-remove="@ViewBag.RemoveBtnUrl" data-table="@ViewBag.TableUrl" data-translator="@ViewBag.TranslatorUrl" data-plugin="DataTable" class="table table-bordered table-hover" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+</table>
+
+<input name="clienteId" id="clienteId" value="@Model" type="hidden" />
+<input name="backUrl" id="backUrl" value="@ViewBag.BackBtnUrl" type="hidden" />

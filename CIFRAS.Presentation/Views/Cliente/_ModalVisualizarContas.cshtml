@@ -1,0 +1,42 @@
+﻿@model CIFRAS.Application.ViewModel.ClienteVm
+
+<div class="modal fade" id="modalContas" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contas</h5>
+            </div>
+            <div class="modal-body">
+                @if (Model.ListaConta != null && Model.ListaConta.Any())
+                {
+                    <table class="col-sm-12 table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Número Agência</th>
+                                <th>Número Conta</th>
+                                <th>Banco</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.ListaConta)
+                            {
+                                <tr>
+                                    <td>@item.NumeroAgencia</td>
+                                    <td>@item.NumeroConta</td>
+                                    <td>@item.BancoView</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>Nenhuma conta para este cliente!</p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

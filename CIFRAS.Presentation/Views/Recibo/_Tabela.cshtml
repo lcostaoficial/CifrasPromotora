@@ -1,0 +1,18 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@{ 
+    ViewBag.TableUrl = Url.Content("~/Recibo/ObterTabela").ToAbsoluteUrl();
+    ViewBag.TranslatorUrl = Url.Content("~/Scripts/vendor/datatables/translator.json").ToAbsoluteUrl();
+    ViewBag.EditBtnUrl = Url.Action("Editar", "Recibo");
+    ViewBag.RemoveBtnUrl = Url.Action("Remover", "Recibo");
+    ViewBag.DownloadBtnUrl = Url.Action("Download", "Recibo");
+}
+
+<table id="datatable" data-edit="@ViewBag.EditBtnUrl" data-remove="@ViewBag.RemoveBtnUrl" data-download="@ViewBag.DownloadBtnUrl" data-table="@ViewBag.TableUrl" data-translator="@ViewBag.TranslatorUrl" data-plugin="DataTable" class="table table-bordered table-hover" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Corretor</th>
+            <th>Data de Emissão</th> 
+            <th>Ação</th>
+        </tr>
+    </thead>
+</table>

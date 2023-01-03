@@ -1,0 +1,29 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@{
+    ViewBag.Title = "Tipos de Cliente";
+    ViewBag.Subtitle = "Todos";    
+}
+
+@section styles{
+    @Styles.Render("~/Content/datatables-css")
+}
+
+@Html.Partial("_TitleForm")
+
+<div class="card mb-3">
+    <div class="card-header">
+        @Html.TableButton("btn btn-success", "fa fa-lg fa-plus", "Novo", Url.Action("Adicionar"))
+        @Html.TableButton("btn btn-info", "fa fa-lg fa-refresh", "Atualizar", Url.Action("Index"))
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            @Html.Partial("_Tabela")
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Atualizado em @DateTime.Now</div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatables-js")
+    @Scripts.Render("~/bundles/tipo-cliente-table-js")
+}

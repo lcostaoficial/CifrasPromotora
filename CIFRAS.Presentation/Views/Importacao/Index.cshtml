@@ -1,0 +1,28 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@model CIFRAS.Application.ViewModel.ImportacaoVm
+@{
+    ViewBag.Title = "Importação";
+    ViewBag.Subtitle = "Novo";
+}
+
+@Html.Partial("_TitleForm")
+
+<div class="card mb-3">
+    <div class="card-header">
+       Importação de clientes
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Index", "Importacao", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Partial("_Form")
+        }
+    </div>
+</div>
+
+@if (!String.IsNullOrEmpty(Model?.LogPath))
+{
+    <div class="alert alert-success" role="alert">
+        Clique <a href="@Model.LogPath.ToAbsoluteUrl()" target="_blank">aqui</a> para baixar o Log de importação do dia @DateTime.Now.ToShortDateString()
+    </div>
+}

@@ -1,0 +1,14 @@
+﻿@model CIFRAS.Application.ViewModel.FuncionarioVm
+@{
+    ViewBag.Title = "Funcionário";
+    ViewBag.Subtitle = "Novo";
+}
+
+@Html.Partial("_TitleForm")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Partial("_Form")
+    @Html.Partial("_ButtonForm")
+}

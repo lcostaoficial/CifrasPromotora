@@ -1,0 +1,41 @@
+﻿@using CIFRAS.Application.ViewModel
+@model ClienteVm
+@{
+    ViewBag.Title = "Cliente";
+    ViewBag.Subtitle = "Novo";
+}
+
+@section styles {
+    @Styles.Render("~/Content/datepicker-css")
+}
+
+@Html.Partial("_TitleForm")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Partial("_Form")
+    @Html.Partial("_ButtonForm")
+}
+
+@using (Html.BeginForm("AdicionarConta", "Cliente", FormMethod.Post, new { id = "frmAdicionarConta" }))
+{
+    @Html.Partial("_ModalAdicionarConta", new ContaVm())
+}
+
+@using (Html.BeginForm("AdicionarContrato", "Cliente", FormMethod.Post, new { id = "frmAdicionarContrato" }))
+{
+    @Html.Partial("_ModalAdicionarContrato", new ContratoVm())
+}
+
+@using (Html.BeginForm("AdicionarContato", "Cliente", FormMethod.Post, new { id = "frmAdicionarContato" }))
+{
+    @Html.Partial("_ModalAdicionarContato", new ContatoVm())
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/cliente-add-js")
+    @Scripts.Render("~/bundles/correios-js")
+    @Scripts.Render("~/bundles/datepicker-js")
+    @Scripts.Render("~/bundles/ckeditor-js")
+}

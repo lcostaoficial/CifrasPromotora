@@ -1,0 +1,32 @@
+﻿@model CIFRAS.Application.ViewModel.ContatoVm
+@{
+    ViewBag.Title = "Dados de Contato";
+}
+
+<div class="modal fade" id="modalConfirmarContato" tabindex="-1" role="dialog" aria-hidden="true" data-add="@Url.Action("AdicionarContato", "Cliente")" data-reload="@Url.Action("AtualizarContatos", "Cliente")">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@ViewBag.Title</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-8 mb-3">
+                        @Html.LabelFor(m => m.Descricao)
+                        @Html.EditorFor(m => m.Descricao, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        @Html.ValidationMessageFor(m => m.Descricao)
+                    </div>
+                    <div class="form-group col-md-4 mb-3">
+                        @Html.LabelFor(m => m.TipoContato)
+                        @Html.EnumDropDownListFor(m => m.TipoContato, "Selecione...", new { @class = "form-control", required = "" })
+                        @Html.ValidationMessageFor(m => m.TipoContato)
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSalvarContato" type="submit" class="btn btn-primary">Salvar</button>
+                <button id="btnCancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

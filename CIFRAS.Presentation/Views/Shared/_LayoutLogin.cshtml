@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Autenticação - CIFRAS Promotora</title>
+    @Styles.Render("~/Content/basic-vendor")
+    @Styles.Render("~/Content/basic-css")
+    @RenderSection("styles", required: false)
+</head>
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-5">
+            <div class="card-header">Login</div>
+            <div class="card-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>  
+    @Scripts.Render("~/bundles/basic-vendor")
+    @Scripts.Render("~/bundles/basic-js")
+    @RenderSection("scripts", required: false)
+    @Html.Partial("_Message")
+</body>
+</html>

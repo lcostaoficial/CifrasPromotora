@@ -1,0 +1,40 @@
+﻿@model CIFRAS.Application.ViewModel.ClienteVm
+    
+<div class="modal fade" id="modalContatos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Contatos</h5>
+            </div>
+            <div class="modal-body">
+                @if (Model.ListaContato != null && Model.ListaContato.Any())
+                {
+                    <table class="col-sm-12 table table-bordered table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Tipo de Contato</th>
+                            <th>Descrição</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in Model.ListaContato)
+                        {
+                            <tr>
+                                <td>@item.TipoContato.ToString()</td>
+                                <td>@item.Descricao</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p>Nenhum contato para este cliente!</p>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

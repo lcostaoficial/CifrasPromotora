@@ -1,0 +1,26 @@
+﻿@using CIFRAS.Application.ViewModel
+@model ReciboVm
+@{
+    ViewBag.Title = "Recibo";
+    ViewBag.Subtitle = "Editar";
+}
+
+@Html.Partial("_TitleForm")
+
+@using (Html.BeginForm("Editar", "Recibo", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.ReciboId)
+    @Html.Partial("_Form")
+    @Html.Partial("_ButtonForm")
+}
+
+@using (Html.BeginForm("AdicionarEmprestimo", "Recibo", FormMethod.Post, new { id = "frmAdicionarEmprestimo" }))
+{
+    @Html.Partial("_ModalAdicionarEmprestimo", new ReciboEmprestimoVm())
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/recibo-add-js")
+    @Scripts.Render("~/bundles/recibo-update-js")
+}

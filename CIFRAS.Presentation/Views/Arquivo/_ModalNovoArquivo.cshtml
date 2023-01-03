@@ -1,0 +1,35 @@
+﻿@model CIFRAS.Application.ViewModel.ArquivoVm
+@{
+    ViewBag.Title = "Novo Arquivo";
+}
+
+<div class="modal fade" id="modalConfirmarNovoArquivo" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@ViewBag.Title</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-8 mb-3">
+                        @Html.LabelFor(m => m.Descricao)
+                        @Html.EditorFor(m => m.Descricao, new { htmlAttributes = new { @class = "form-control", MaxLength = 100, required = "" } })
+                        @Html.ValidationMessageFor(m => m.Descricao)
+                    </div>
+                    <div class="form-group col-md-4 mb-3">
+                        @Html.LabelFor(m => m.CategoriaArquivoId)
+                        @Html.DropDownListFor(x => x.CategoriaArquivoId, new SelectList(ViewBag.CategoriasArquivos, "CategoriaArquivoId", "Descricao"), "Selecione...", new {@class = "form-control", required = ""})
+                        @Html.ValidationMessageFor(m => m.CategoriaArquivoId)
+                    </div>
+                    <div class="form-group col-md-12 mb-3">
+                        @Html.TextBox("ArquivoEnvio", "", new { type = "file", @class = "form-control", required = "required" })
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSalvarNovoArquivo" type="submit" class="btn btn-primary">Salvar</button>
+                <button id="btnCancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

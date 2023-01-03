@@ -1,0 +1,286 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@model CIFRAS.Application.ViewModel.ClienteVm
+@{
+    ViewBag.Title = "Cliente";
+    ViewBag.Subtitle = "Detalhes";
+    ViewBag.ImprimirBtnUrl = Url.Action("Imprimir", "Cliente", new { id = Model.ClienteId });
+}
+
+@Html.Partial("_TitleForm")
+
+<div class="row">
+    <div class="col-md-12 mb-3">
+        <button data-url="@ViewBag.ImprimirBtnUrl" onclick="Imprimir(this)" type="button" class="btn btn-info">
+            <i class="fa fa-print" aria-hidden="true"> </i>
+            Imprimir Ficha
+        </button>      
+        <a href="@Url.Action("Editar", "Cliente", new { id = Model.ClienteId })" class="btn btn-info">
+            <i class="fa fa-edit" aria-hidden="true"> </i>
+            Editar Cliente
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Financeiro</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-success o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fa fa-fw fa-money"></i>
+                                </div>
+                                <div class="mr-5">Margem</div>
+                            </div>
+                            <a class="card-footer text-white clearfix small z-1" href="" data-toggle="modal" data-target="#modalMargem">
+                                <span class="float-left">Detalhar</span>
+                                <span class="float-right">
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-warning o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fa fa-fw fa-file"></i>
+                                </div>
+                                <div class="mr-5">Contratos</div>
+                            </div>
+                            <a class="card-footer text-white clearfix small z-1" href="" data-toggle="modal" data-target="#modalContratos">
+                                <span class="float-left">Detalhar</span>
+                                <span class="float-right">
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-primary o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fa fa-fw fa-comments"></i>
+                                </div>
+                                <div class="mr-5">Contatos</div>
+                            </div>
+                            <a class="card-footer text-white clearfix small z-1" href="" data-toggle="modal" data-target="#modalContatos">
+                                <span class="float-left">Detalhar</span>
+                                <span class="float-right">
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="card text-white bg-danger o-hidden h-100">
+                            <div class="card-body">
+                                <div class="card-body-icon">
+                                    <i class="fa fa-fw fa-bank"></i>
+                                </div>
+                                <div class="mr-5">Contas</div>
+                            </div>
+                            <a class="card-footer text-white clearfix small z-1" href="" data-toggle="modal" data-target="#modalContas">
+                                <span class="float-left">Detalhar</span>
+                                <span class="float-right">
+                                    <i class="fa fa-angle-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Dados Pessoais</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        @Html.LabelFor(m => m.Nome)
+                        @Html.EditorFor(m => m.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Nome)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Sexo)
+                        @Html.EnumDropDownListFor(m => m.Sexo, "Selecione...", new { @class = "form-control", disabled = "" })
+                        @Html.ValidationMessageFor(m => m.Sexo)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.DataNascimento)
+                        @Html.EditorFor(m => m.DataNascimento, new { htmlAttributes = new { @class = "form-control date", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.DataNascimento)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Documentos Pessoais</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Cpf)
+                        @Html.EditorFor(m => m.Cpf, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Cpf)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Rg)
+                        @Html.EditorFor(m => m.Rg, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Rg)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.DataExpedicaoRg)
+                        @Html.EditorFor(m => m.DataExpedicaoRg, new { htmlAttributes = new { @class = "form-control date", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.DataExpedicaoRg)
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        @Html.LabelFor(m => m.OrgaoRg)
+                        @Html.EditorFor(m => m.OrgaoRg, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.OrgaoRg)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Cnh)
+                        @Html.EditorFor(m => m.Cnh, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Cnh)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Endereço</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Endereco.Cep)
+                        @Html.EditorFor(m => m.Endereco.Cep, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Endereco.Cep)
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(m => m.Endereco.NomeEndereco)
+                        @Html.EditorFor(m => m.Endereco.NomeEndereco, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Endereco.NomeEndereco)
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        @Html.LabelFor(m => m.Endereco.Bairro)
+                        @Html.EditorFor(m => m.Endereco.Bairro, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Endereco.Bairro)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Endereco.Cidade)
+                        @Html.EditorFor(m => m.Endereco.Cidade, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.Endereco.Cidade)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Endereco.Estado)
+                        @Html.EnumDropDownListFor(m => m.Endereco.Estado, "Selecione...", new { @class = "form-control", disabled = "" })
+                        @Html.ValidationMessageFor(m => m.Endereco.Estado)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Fonte Contratual</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.TipoClienteId)
+                        @Html.DropDownListFor(x => x.TipoClienteId, new SelectList(ViewBag.TiposClientes, "TipoClienteId", "Descricao"), "Selecione...", new { @class = "form-control", disabled = "" })
+                        @Html.ValidationMessageFor(m => m.TipoClienteId)
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.NumeroMatricula)
+                        @Html.EditorFor(m => m.NumeroMatricula, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.NumeroMatricula)
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.RendaBruta)
+                        @Html.EditorFor(m => m.RendaBruta, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.RendaBruta)
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.DescontoRenda)
+                        @Html.EditorFor(m => m.DescontoRenda, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.DescontoRenda)
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.OrgaoFuncional)
+                        @Html.EditorFor(m => m.OrgaoFuncional, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.OrgaoFuncional)
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        @Html.LabelFor(m => m.SituacaoCliente)
+                        @Html.EnumDropDownListFor(m => m.SituacaoCliente, "Selecione...", new { @class = "form-control", disabled = "" })
+                        @Html.ValidationMessageFor(m => m.SituacaoCliente)
+                    </div>                                   
+                </div>
+                <div class="row">   
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.NumeroEspecie)
+                        @Html.EditorFor(m => m.NumeroEspecie, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.NumeroEspecie)
+                    </div>  
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.Rmc)
+                        @(Model != null ? Html.DropDownList("Rmc", HtmlGenerator.SelectListForBoolean(Model.Rmc), "Selecione...", new { @class = "form-control", disabled = "" }) : Html.DropDownList("Rmc", HtmlGenerator.SelectListForBoolean(), "Selecione...", new { @class = "form-control", disabled = "" }))
+                        @Html.ValidationMessageFor(m => m.Rmc)
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.UsoRmc)
+                        @Html.EditorFor(m => m.UsoRmc, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.UsoRmc)
+                    </div>
+                    <div class="col-md-2 mb-4">
+                        @Html.LabelFor(m => m.CodigoBancoRmc)
+                        @Html.EditorFor(m => m.CodigoBancoRmc, new { htmlAttributes = new { @class = "form-control", disabled = "" } })
+                        @Html.ValidationMessageFor(m => m.CodigoBancoRmc)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Anotações</div>
+            <div class="card-body">
+                <blockquote class="blockquote">
+                    <p>@Html.Raw(Model.Anotacoes)</p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_ModalVisualizarMargem", Model)
+@Html.Partial("_ModalVisualizarContratos", Model)
+@Html.Partial("_ModalVisualizarContatos", Model)
+@Html.Partial("_ModalVisualizarContas", Model)
+
+@section scripts {
+    @Scripts.Render("~/bundles/pdfmake-js")   
+    @Scripts.Render("~/bundles/cliente-details-js")
+}

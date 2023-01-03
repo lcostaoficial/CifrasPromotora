@@ -1,0 +1,35 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@using CIFRAS.Application.ViewModel
+@{
+    ViewBag.Title = "Clientes";
+    ViewBag.Subtitle = "Todos";
+}
+
+@section styles{
+    @Styles.Render("~/Content/datatables-css")
+}
+
+@Html.Partial("_TitleForm")
+
+<div class="card mb-3">
+    <div class="card-header">
+        <button aria-hidden="true" class="btn btn-primary" data-toggle="modal" data-target="#modalFiltrarCliente" title="Filtro avançado">
+            <i class="fa fa-lg fa-search"></i>
+        </button>
+        @Html.TableButton("btn btn-success", "fa fa-lg fa-plus", "Novo", Url.Action("Adicionar"))
+        @Html.TableButton("btn btn-info", "fa fa-lg fa-refresh", "Atualizar", Url.Action("Index"))
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            @Html.Partial("_Tabela")
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Atualizado em @DateTime.Now</div>
+</div>
+
+@Html.Partial("_ModalFiltrarCliente", new FiltroClienteVm())
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatables-js")
+    @Scripts.Render("~/bundles/cliente-table-js")   
+}

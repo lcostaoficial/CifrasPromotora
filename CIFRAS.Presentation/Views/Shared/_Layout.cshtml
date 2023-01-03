@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title - CIFRAS Promotora</title>  
+    @Styles.Render("~/Content/basic-vendor")
+    @Styles.Render("~/Content/basic-css")
+    @RenderSection("styles", required: false)
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">CIFRAS PROMOTORA</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            @Html.Action("LayoutMenu", "Permissao")
+            @Html.Action("LayoutTop", "Permissao")            
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        @Html.Partial("_Footer")
+        @Html.Partial("_ModalSair")
+        @Html.Action("ModalPerfil", "Permissao")     
+        @Scripts.Render("~/bundles/basic-vendor")
+        @Scripts.Render("~/bundles/basic-js")
+        @RenderSection("scripts", required: false)
+        @Html.Partial("_Message")
+    </div>
+</body>
+</html>

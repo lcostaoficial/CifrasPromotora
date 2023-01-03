@@ -1,0 +1,62 @@
+﻿@model CIFRAS.Application.ViewModel.ReciboEmprestimoVm
+@{
+    ViewBag.Title = "Dados do Empréstimo";
+}
+
+<div class="modal fade" id="modalConfirmarEmprestimo" tabindex="-1" role="dialog" aria-hidden="true" data-add="@Url.Action("AdicionarEmprestimo", "Recibo")" data-reload="@Url.Action("AtualizarEmprestimos", "Recibo")">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@ViewBag.Title</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-12 mb-3">
+                        @Html.LabelFor(m => m.NomeCliente)
+                        @Html.EditorFor(m => m.NomeCliente, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        @Html.ValidationMessageFor(m => m.NomeCliente)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.TipoClienteId)
+                        @Html.DropDownListFor(x => x.TipoClienteId, new SelectList(ViewBag.TiposClientes, "TipoClienteId", "Descricao"), "Selecione...", new { @class = "form-control", required = "" })
+                        @Html.ValidationMessageFor(m => m.TipoClienteId)
+                    </div> 
+                    <div class="form-group col-md-6 mb-3">
+                        @Html.LabelFor(m => m.EspecificacaoEmprestimo)
+                        @Html.EnumDropDownListFor(m => m.EspecificacaoEmprestimo, "Selecione...", new { @class = "form-control", required = "" })
+                        @Html.ValidationMessageFor(m => m.EspecificacaoEmprestimo)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.BancoId)
+                        @Html.DropDownListFor(x => x.BancoId, new SelectList(ViewBag.Bancos, "BancoId", "Descricao"), "Selecione...", new { @class = "form-control", required = "" })
+                        @Html.ValidationMessageFor(m => m.BancoId)
+                    </div>   
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.ValorSolicitado)
+                        @Html.EditorFor(m => m.ValorSolicitado, new { htmlAttributes = new { @class = "form-control money", required = "" } })
+                        @Html.ValidationMessageFor(m => m.ValorSolicitado)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.ValorLiberado)
+                        @Html.EditorFor(m => m.ValorLiberado, new { htmlAttributes = new { @class = "form-control money", required = "" } })
+                        @Html.ValidationMessageFor(m => m.ValorLiberado)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.QtdeParcelas)
+                        @Html.EditorFor(m => m.QtdeParcelas, new { htmlAttributes = new { @class = "form-control numero", required = "" } })
+                        @Html.ValidationMessageFor(m => m.QtdeParcelas)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.PercentualComissao)
+                        @Html.EditorFor(m => m.PercentualComissao, new { htmlAttributes = new { @class = "form-control money", required = "" } })
+                        @Html.ValidationMessageFor(m => m.PercentualComissao)
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSalvarEmprestimo" type="submit" class="btn btn-primary">Salvar</button>
+                <button id="btnCancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

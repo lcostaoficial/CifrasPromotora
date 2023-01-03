@@ -1,0 +1,48 @@
+﻿@model CIFRAS.Application.ViewModel.CorretorVm
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-3">
+            <div class="card-header">Geral</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        @Html.LabelFor(m => m.Nome)
+                        @Html.EditorFor(m => m.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Nome)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.NomeAbreviado)
+                        @Html.EditorFor(m => m.NomeAbreviado, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.NomeAbreviado)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.Cpf)
+                        @Html.EditorFor(m => m.Cpf, new { htmlAttributes = new { @class = "form-control cpf" } })
+                        @Html.ValidationMessageFor(m => m.Cpf)
+                    </div>
+                    <div class="form-group col-md-2 mb-3">
+                        @Html.LabelFor(m => m.BancoId)
+                        @Html.DropDownListFor(x => x.BancoId, new SelectList(ViewBag.Bancos, "BancoId", "Descricao"), "Selecione...", new { @class = "form-control bancoConta", required = "" })
+                        @Html.ValidationMessageFor(m => m.BancoId)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.NumeroAgencia)
+                        @Html.EditorFor(m => m.NumeroAgencia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.NumeroAgencia)
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        @Html.LabelFor(m => m.NumeroConta)
+                        @Html.EditorFor(m => m.NumeroConta, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.NumeroConta)
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        @Html.LabelFor(m => m.TipoConta)
+                        @Html.EnumDropDownListFor(m => m.TipoConta, "Selecione...", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.TipoConta)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

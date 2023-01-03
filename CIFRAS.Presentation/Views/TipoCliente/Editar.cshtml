@@ -1,0 +1,15 @@
+﻿@model CIFRAS.Application.ViewModel.TipoClienteVm
+@{
+    ViewBag.Title = "Tipo de Cliente";
+    ViewBag.Subtitle = "Editar";
+}
+
+@Html.Partial("_TitleForm")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.TipoClienteId)
+    @Html.Partial("_Form")
+    @Html.Partial("_ButtonForm")
+}

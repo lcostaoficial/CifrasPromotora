@@ -1,0 +1,32 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@model CIFRAS.Application.ViewModel.ImportacaoVm
+
+<div class="form-group">
+    <div class="col-md-12 mb-3">
+        @Html.LabelFor(m => m.Arquivo)
+        <div class="input-group input-file">
+            <div class="form-control">
+                <a href="#" target="_blank"></a>
+            </div>
+            <span class="input-group-addon">
+                <a class='btn btn-success' href='javascript:;'>
+                    Escolher
+                    <input value="" type="file" name="Arquivo" id="Arquivo" onchange="$(this).parent().parent().parent().find('.form-control').html($(this).val().match(/^.*\\(.*)$/)[1]);">
+                </a>
+            </span>
+        </div>
+        @Html.ValidationMessageFor(m => m.Arquivo)
+        <small class="form-text text-muted">O formato do arquivo deve ser *.csv para que o processamento seja feito. Baixe um modelo clicando <a target="_blank" href="@Url.Content("~/Arquivos/Modelo.csv").ToAbsoluteUrl()">aqui</a>.</small>
+    </div>
+    <div class="col-md-12 mb-4">
+        @Html.LabelFor(m => m.TipoClienteId)
+        @Html.DropDownListFor(x => x.TipoClienteId, new SelectList(ViewBag.TiposClientes, "TipoClienteId", "Descricao"), "Selecione...", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TipoClienteId)
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-12 mb-3">
+        <button type="submit" class="btn btn-primary">Importar</button>
+    </div>
+</div>

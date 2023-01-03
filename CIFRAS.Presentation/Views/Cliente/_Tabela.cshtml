@@ -1,0 +1,22 @@
+﻿@using CIFRAS.Infra.CrossCutting.Helpers
+@{
+    ViewBag.TableUrl = Url.Content("~/Cliente/ObterTabela").ToAbsoluteUrl();
+    ViewBag.TranslatorUrl = Url.Content("~/Scripts/vendor/datatables/translator.json").ToAbsoluteUrl();
+    ViewBag.DetailUrl = Url.Action("Detalhes", "Cliente");
+    ViewBag.FileUrl = Url.Action("Visualizar", "Arquivo");
+    ViewBag.EditBtnUrl = Url.Action("Editar", "Cliente");
+    ViewBag.RemoveBtnUrl = Url.Action("Remover", "Cliente");
+}
+
+<table id="datatable" data-detail="@ViewBag.DetailUrl" data-file="@ViewBag.FileUrl" data-edit="@ViewBag.EditBtnUrl" data-remove="@ViewBag.RemoveBtnUrl" data-table="@ViewBag.TableUrl" data-translator="@ViewBag.TranslatorUrl" data-plugin="DataTable" class="table table-bordered table-hover" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>           
+            <th>Tipo</th>
+            <th>Margem Disponível</th> 
+            <th>Visualizado</th> 
+            <th class="col-md-2 text-center">Ação</th>
+        </tr>
+    </thead>
+</table>

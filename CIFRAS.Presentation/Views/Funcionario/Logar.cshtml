@@ -1,0 +1,10 @@
+﻿@model CIFRAS.Application.ViewModel.LoginVm
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Partial("_FormLogin")
+}

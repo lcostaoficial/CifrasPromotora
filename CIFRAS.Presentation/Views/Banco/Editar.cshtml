@@ -1,0 +1,15 @@
+﻿@model CIFRAS.Application.ViewModel.BancoVm
+@{
+    ViewBag.Title = "Banco";
+    ViewBag.Subtitle = "Editar";
+}
+
+@Html.Partial("_TitleForm")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.BancoId)
+    @Html.Partial("_Form")
+    @Html.Partial("_ButtonForm")
+}

@@ -1,0 +1,57 @@
+﻿@model CIFRAS.Application.ViewModel.ContratoVm
+@{
+    ViewBag.Title = "Dados do Contrato";
+}
+
+<div class="modal fade" id="modalConfirmarContrato" tabindex="-1" role="dialog" aria-hidden="true" data-add="@Url.Action("AdicionarContrato", "Cliente")" data-reload="@Url.Action("AtualizarContratos", "Cliente")">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@ViewBag.Title</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.TipoContratoId)
+                        @Html.DropDownListFor(x => x.TipoContratoId, new SelectList(ViewBag.TiposContratos, "TipoContratoId", "Descricao"), "Selecione...", new { @class = "form-control", required = "" })
+                        @Html.ValidationMessageFor(m => m.TipoContratoId)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.NumeroContrato)
+                        @Html.EditorFor(m => m.NumeroContrato, new { htmlAttributes = new { @class = "form-control", required = "" } })
+                        @Html.ValidationMessageFor(m => m.NumeroContrato)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.DataInicio)
+                        @Html.EditorFor(m => m.DataInicio, new { htmlAttributes = new { @class = "form-control datepicker date", required = "" } })
+                        @Html.ValidationMessageFor(m => m.DataInicio)
+                    </div>                  
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.ValorFinanciado)
+                        @Html.EditorFor(m => m.ValorFinanciado, new { htmlAttributes = new { @class = "form-control money", required = "" } })
+                        @Html.ValidationMessageFor(m => m.ValorFinanciado)
+                    </div>                  
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.ValorParcela)
+                        @Html.EditorFor(m => m.ValorParcela, new { htmlAttributes = new { @class = "form-control money", required = "" } })
+                        @Html.ValidationMessageFor(m => m.ValorParcela)
+                    </div>                  
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.TotalParcelas)
+                        @Html.EditorFor(m => m.TotalParcelas, new { htmlAttributes = new { @class = "form-control numero", required = "" } })
+                        @Html.ValidationMessageFor(m => m.TotalParcelas)
+                    </div>
+                    <div class="form-group col-md-3 mb-3">
+                        @Html.LabelFor(m => m.BancoId)
+                        @Html.DropDownListFor(x => x.BancoId, new SelectList(ViewBag.Bancos, "BancoId", "Descricao"), "Selecione...", new { @class = "form-control", required = "" })
+                        @Html.ValidationMessageFor(m => m.BancoId)
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btnSalvarBanco" type="submit" class="btn btn-primary">Salvar</button>
+                <button id="btnCancelar" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

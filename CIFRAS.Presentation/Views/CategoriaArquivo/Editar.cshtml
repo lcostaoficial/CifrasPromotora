@@ -1,0 +1,15 @@
+﻿@model CIFRAS.Application.ViewModel.CategoriaArquivoVm
+@{
+    ViewBag.Title = "Categoria do Arquivo";
+    ViewBag.Subtitle = "Editar";
+}
+
+@Html.Partial("_TitleForm")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CategoriaArquivoId)
+    @Html.Partial("_Form")
+    @Html.Partial("_ButtonForm")
+}

@@ -1,0 +1,15 @@
+﻿@model CIFRAS.Application.ViewModel.CorretorVm
+@{
+    ViewBag.Title = "Corretor";
+    ViewBag.Subtitle = "Editar";
+}
+
+@Html.Partial("_TitleForm")
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.CorretorId)
+    @Html.Partial("_Form")
+    @Html.Partial("_ButtonForm")
+}

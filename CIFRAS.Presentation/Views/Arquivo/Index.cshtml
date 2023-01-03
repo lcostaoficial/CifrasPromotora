@@ -1,0 +1,43 @@
+﻿@model int
+@using CIFRAS.Application.ViewModel
+@{
+    ViewBag.Title = "Arquivo";
+    ViewBag.Subtitle = "Todos";
+    ViewBag.BuscarClienteUrl = Url.Action("BuscarCliente", "Cliente");
+}
+
+@section styles{
+    @Styles.Render("~/Content/datatables-css")
+}
+
+@Html.Partial("_TitleForm")
+
+@Html.Partial("_InformacaoCliente")
+
+<div class="card mb-3">
+    <div class="card-header">
+        <button aria-hidden="true" class="btn btn-primary" data-toggle="modal" data-target="#modalConfirmarNovoArquivo" title="Incluir novo arquivo">
+            <i class="fa fa-lg fa-send"></i>
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            @Html.Partial("_Tabela", Model)
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Atualizado em @DateTime.Now</div>
+</div>
+
+<input name="buscarClienteUrl" id="buscarClienteUrl" value="@ViewBag.BuscarClienteUrl" type="hidden" />
+
+@using (Html.BeginForm("NovoArquivo", "Arquivo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Hidden("ClienteId", Model)
+    @Html.Partial("_ModalNovoArquivo", new ArquivoVm())
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatables-js")
+    @Scripts.Render("~/bundles/arquivo-table-js")
+    @Scripts.Render("~/bundles/arquivo-personalize-js")
+}

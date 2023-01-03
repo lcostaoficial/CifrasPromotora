@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CIFRAS.Application.ViewModel.ContatoVm>
+@if (Model != null && Model.Any())
+{
+    int i = 0;
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Descrição</th>
+                <th>Tipo do Contato</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Descricao</td>
+                    <td>@item.TipoContato</td>
+                    <td><a href="#" onclick="RemoverContato('@($"{ Url.Action("RemoverContato", "Cliente")}?index= {i}")');">Cancelar</a></td>
+                </tr>
+                i++;
+            }
+        </tbody>
+    </table>
+}
